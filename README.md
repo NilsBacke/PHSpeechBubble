@@ -19,7 +19,7 @@ Dart Pub: https://pub.dartlang.org/packages/speech_bubble#-installing-tab-
    Add this to your package's pubspec.yaml file:
 
 ```dependencies:
-  speech_bubble: ^0.0.1
+  speech_bubble: ^0.0.5
 ```
 
 2. Install it
