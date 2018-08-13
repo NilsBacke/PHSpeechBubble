@@ -1,0 +1,10 @@
+.DS_Store
+.dart_tool/
+
+README.md
+
+.packages
+.pub/
+pubspec.lock
+
+build/
