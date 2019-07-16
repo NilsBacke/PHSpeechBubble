@@ -41,8 +41,8 @@ class SpeechBubble extends StatelessWidget {
   /// The [SpeechBubble] will defaultly enclose its [child].
   final double width;
 
-  /// The padding widget between the child and the edges of the [SpeechBubble].
-  final Widget padding;
+  /// The padding between the child and the edges of the [SpeechBubble].
+  final EdgeInsetsGeometry padding;
 
   Widget build(BuildContext context) {
     Offset nipOffset;
