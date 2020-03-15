@@ -28,7 +28,8 @@ class SpeechBubble extends StatelessWidget {
       this.height,
       this.width,
       this.padding,
-      this.nipHeight = defaultNipHeight})
+      this.nipHeight = defaultNipHeight,
+      this.offset = Offset.zero})
       : super(key: key);
 
   /// The [child] contained by the [SpeechBubble]
@@ -62,6 +63,8 @@ class SpeechBubble extends StatelessWidget {
   /// The nip height
   final double nipHeight;
 
+  final Offset offset;
+
   Widget build(BuildContext context) {
     Offset nipOffset;
     AlignmentGeometry alignment;
@@ -85,19 +88,19 @@ class SpeechBubble extends StatelessWidget {
         alignment = Alignment.centerLeft;
         break;
       case NipLocation.BOTTOM_LEFT:
-        nipOffset = Offset(offset - rotatedNipHalfHeight,  offset - rotatedNipHalfHeight);
+        nipOffset = this.offset + Offset(offset - rotatedNipHalfHeight,  offset - rotatedNipHalfHeight);
         alignment = Alignment.bottomLeft;
         break;
       case NipLocation.BOTTOM_RIGHT:
-        nipOffset = Offset(-offset + rotatedNipHalfHeight,  offset - rotatedNipHalfHeight);
+        nipOffset = this.offset + Offset(-offset + rotatedNipHalfHeight,  offset - rotatedNipHalfHeight);
         alignment = Alignment.bottomRight;
         break;
       case NipLocation.TOP_LEFT:
-        nipOffset = Offset(offset - rotatedNipHalfHeight,  -offset + rotatedNipHalfHeight);
+        nipOffset = this.offset + Offset(offset - rotatedNipHalfHeight,  -offset + rotatedNipHalfHeight);
         alignment = Alignment.topLeft;
         break;
       case NipLocation.TOP_RIGHT:
-        nipOffset = Offset(-offset + rotatedNipHalfHeight,  -offset + rotatedNipHalfHeight);
+        nipOffset = this.offset + Offset(-offset + rotatedNipHalfHeight,  -offset + rotatedNipHalfHeight);
         alignment = Alignment.topRight;
         break;
       default:
