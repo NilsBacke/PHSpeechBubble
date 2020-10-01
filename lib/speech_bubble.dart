@@ -2,24 +2,41 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+/// Location
 enum NipLocation {
+  /// Top
   TOP,
+
+  /// Right
   RIGHT,
+
+  /// Bottom
   BOTTOM,
+
+  /// Left
   LEFT,
+
+  /// Bottom Right
   BOTTOM_RIGHT,
+
+  /// Bottom Left
   BOTTOM_LEFT,
+
+  /// Top Right
   TOP_RIGHT,
+
+  /// Top Left
   TOP_LEFT
 }
 
-const defaultNipHeight = 10.0;
-var rotatedNip;
+/// Height of nip
+const double defaultNipHeight = 10.0;
 
+/// Speech Bubble
 class SpeechBubble extends StatelessWidget {
   /// Creates a widget that emulates a speech bubble.
   /// Could be used for a tooltip, or as a pop-up notification, etc.
-  SpeechBubble(
+  const SpeechBubble(
       {Key key,
       @required this.child,
       this.nipLocation: NipLocation.BOTTOM,
@@ -63,14 +80,16 @@ class SpeechBubble extends StatelessWidget {
   /// The nip height
   final double nipHeight;
 
+  /// Offset
   final Offset offset;
 
+  @override
   Widget build(BuildContext context) {
     Offset nipOffset;
     AlignmentGeometry alignment;
-    var rotatedNipHalfHeight = getNipHeight(nipHeight) / 2;
-    var offset = nipHeight / 2 + rotatedNipHalfHeight;
-    switch (this.nipLocation) {
+    final double rotatedNipHalfHeight = _getNipHeight(nipHeight) / 2;
+    final double offset = nipHeight / 2 + rotatedNipHalfHeight;
+    switch (nipLocation) {
       case NipLocation.TOP:
         nipOffset = Offset(0.0, -offset + rotatedNipHalfHeight);
         alignment = Alignment.topCenter;
@@ -84,23 +103,31 @@ class SpeechBubble extends StatelessWidget {
         alignment = Alignment.bottomCenter;
         break;
       case NipLocation.LEFT:
-        nipOffset = Offset(- offset + rotatedNipHalfHeight, 0.0);
+        nipOffset = Offset(-offset + rotatedNipHalfHeight, 0.0);
         alignment = Alignment.centerLeft;
         break;
       case NipLocation.BOTTOM_LEFT:
-        nipOffset = this.offset + Offset(offset - rotatedNipHalfHeight,  offset - rotatedNipHalfHeight);
+        nipOffset = this.offset +
+            Offset(
+                offset - rotatedNipHalfHeight, offset - rotatedNipHalfHeight);
         alignment = Alignment.bottomLeft;
         break;
       case NipLocation.BOTTOM_RIGHT:
-        nipOffset = this.offset + Offset(-offset + rotatedNipHalfHeight,  offset - rotatedNipHalfHeight);
+        nipOffset = this.offset +
+            Offset(
+                -offset + rotatedNipHalfHeight, offset - rotatedNipHalfHeight);
         alignment = Alignment.bottomRight;
         break;
       case NipLocation.TOP_LEFT:
-        nipOffset = this.offset + Offset(offset - rotatedNipHalfHeight,  -offset + rotatedNipHalfHeight);
+        nipOffset = this.offset +
+            Offset(
+                offset - rotatedNipHalfHeight, -offset + rotatedNipHalfHeight);
         alignment = Alignment.topLeft;
         break;
       case NipLocation.TOP_RIGHT:
-        nipOffset = this.offset + Offset(-offset + rotatedNipHalfHeight,  -offset + rotatedNipHalfHeight);
+        nipOffset = this.offset +
+            Offset(
+                -offset + rotatedNipHalfHeight, -offset + rotatedNipHalfHeight);
         alignment = Alignment.topRight;
         break;
       default:
@@ -109,38 +136,38 @@ class SpeechBubble extends StatelessWidget {
     return Stack(
       alignment: alignment,
       children: <Widget>[
-        speechBubble(),
-        nip(nipOffset),
+        _speechBubble(),
+        _nip(nipOffset),
       ],
     );
   }
 
-  Widget speechBubble() {
+  Widget _speechBubble() {
     return Material(
       borderRadius: BorderRadius.all(
-        Radius.circular(this.borderRadius),
+        Radius.circular(borderRadius),
       ),
-      color: this.color,
+      color: color,
       elevation: 1.0,
       child: Container(
-        height: this.height,
-        width: this.width,
-        padding: this.padding ?? const EdgeInsets.all(8.0),
-        child: this.child,
+        height: height,
+        width: width,
+        padding: padding ?? const EdgeInsets.all(8.0),
+        child: child,
       ),
     );
   }
 
-  Widget nip(Offset nipOffset) {
+  Widget _nip(Offset nipOffset) {
     return Transform.translate(
       offset: nipOffset,
       child: RotationTransition(
-        turns: AlwaysStoppedAnimation(45 / 360),
+        turns: const AlwaysStoppedAnimation<double>(45 / 360),
         child: Material(
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(1.5),
           ),
-          color: this.color,
+          color: color,
           child: Container(
             height: nipHeight,
             width: nipHeight,
@@ -150,5 +177,5 @@ class SpeechBubble extends StatelessWidget {
     );
   }
 
-  double getNipHeight(double nipHeight) => sqrt(2 * pow(nipHeight, 2));
+  double _getNipHeight(double nipHeight) => sqrt(2 * pow(nipHeight, 2));
 }
