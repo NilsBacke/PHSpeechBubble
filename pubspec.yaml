@@ -5,7 +5,7 @@ author: Nils Backe <nils.backe@gmail.com>
 homepage: https://github.com/NilsBacke/PHSpeechBubble
 
 environment:
-    sdk: '>=1.24.3 <3.0.0'
+    sdk: '>=2.12.0 <3.0.0'
     flutter: '>=0.1.1'
 
 dependencies:
