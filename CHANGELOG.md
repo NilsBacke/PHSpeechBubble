@@ -1,3 +1,7 @@
+## 0.0.9 - 04-10-2021
+
+- Up minimum flutter sdk
+
 ## 0.0.8 - 04-10-2021
 
 - Added null safety

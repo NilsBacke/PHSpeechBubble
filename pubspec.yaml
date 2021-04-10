@@ -1,11 +1,11 @@
 name: speech_bubble
 description: A widget that emulates a speech bubble in flutter.
-version: 0.0.8
+version: 0.0.9
 homepage: https://github.com/NilsBacke/PHSpeechBubble
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ">=1.10.0"
+  flutter: ">=1.12.0"
 
 dependencies:
   flutter:
@@ -20,6 +20,7 @@ flutter:
     platforms:
       android:
         package: com.plushundred.speechbubble
+        pluginClass: SpeechBubblePlugin
       ios:
         pluginClass: SpeechBubblePlugin
   # To add assets to your plugin package, add an assets section, like this:
